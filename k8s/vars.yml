@@ -1,0 +1,20 @@
+xks_go:
+  debug:
+    red: true
+    default: false
+  config_file_path:
+    default: '/app/xks-go/config-go'
+  etc_dir:
+    default: "/etc/certs"
+  sat_public_key_file:
+    default: '/etc/certs/sat-prod-k1-1024.pub'
+  cassandra_user:
+    red: "xpcuser"
+    default: ""
+  cassandra_encrypted_password:
+    red: "ni0H9MUnAIOqSMVS7hchSG7+lJnqtG08MI1yGSrtICy7Tj3T26vbw2Z06seBIjyl"
+    default: "ni0H9MUnAIOqSMVS7hchSG7+lJnqtG08MI1yGSrtICy7Tj3T26vbw2Z06seBIjyl"
+  # sky_token_source_url:
+  #   default: "{{common_gslbs['xpc_haproxy_api_dns_internal'][site_color] | default (common_gslbs['xpc_haproxy_api_dns_internal']['default'])}}"
+  db_seeds:
+    red: "xdpdbn-hoa-01-red.xdp.comcast.net,xdpdbn-hoa-03-red.xdp.comcast.net,xdpdbs-hoa-01-red.xdp.comcast.net,xdpdbs-hoa-03-red.xdp.comcast.net,xdpdbpr-poa-01-red.xdp.comcast.net,xdpdbpr-poa-02-red.xdp.comcast.net,xdpdbpr-poa-03-red.xdp.comcast.net,xdpdbbk-poa-01-red.xdp.comcast.net"

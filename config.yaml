@@ -1,0 +1,14 @@
+# Server configurations
+server:
+  host: "localhost"
+  port: 8000
+  TimeoutRead: 5s
+  TimeoutWrite: 10s
+  TimeoutIdle: 10s
+  DEGUG: true
+  XKSKEY: "Hello"
+# Database credentials
+common:
+  XKSKEY: "Hello"
+  db_user: "xdpdba"
+  encrypted_password: "ADFAF76AFAFA---AFAFAAF="

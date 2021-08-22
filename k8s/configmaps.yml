@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: xksgo-config
+    namespace: red
+data:
+  config: |-
+        # Server configurations
+            port: 8080
+            TimeoutRead: 5s
+            TimeoutWrite: 10s
+            TimeoutIdle: 10s
+            DEGUG: true
+        # Common Values
+        common:
+            db_user: "xdpdba"
+            encrypted_password: "HGAFDAFDA******A452ADF345=="

@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xksgo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xksgo
+  template:
+    metadata:
+      labels:
+        app: xksgo
+    spec:
+      containers:
+      - name: xksgo
+        image: 287432581570.dkr.ecr.us-west-2.amazonaws.com/xksgo
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "0.5"
+          limits:
+            memory: "200Mi"
+            cpu: "1"
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /api/v1/healtz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /api/v1/healtz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        env:
+        - name: XPC_KEY // environment variable name
+          valueFrom:
+            secretKeyRef:
+              name: xksgo-keys  // name of the secret that we created above secrets.yml
+              key: XPC_KEY  // key value, as you seen secrets.yml file, we have 3 keys under data. 
+        - name: SAT_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: xksgo-keys
+              key: SAT_CLIENT_ID
+        - name: SAT_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: xksgo-keys
+              key: SAT_CLIENT_SECRET
+        volumeMounts:
+        - name: config-volume
+          mountPath: "/app/xks-go/config" // make sure you have created /app/xksgo/config dir during your docker build step
+          readOnly: true
+      volumes:
+      - name: config-volume
+        configMap:
+           name: xksgo-config // name of the configuration that we created above
+           items:
+           - keys: config
+             path: config.yaml
